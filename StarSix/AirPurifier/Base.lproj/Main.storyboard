@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Air Purifier View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="AirPurifierViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launcher.png" translatesAutoresizingMaskIntoConstraints="NO" id="dnN-IN-3vC">
+                                <rect key="frame" x="109.5" y="128" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dnN-IN-3vC" secondAttribute="height" multiplier="1:1" id="3T8-xq-UV3"/>
+                                    <constraint firstAttribute="width" constant="100" id="pnr-yJ-gnb"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在载入，请稍后..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEB-R3-Cfh">
+                                <rect key="frame" x="98" y="531" width="124.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.70980392156862748" green="0.70980392156862748" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCj-kv-xaX">
+                                <rect key="frame" x="94" y="258" width="132" height="53"/>
+                                <string key="text">六星新风机
+开启智能生活</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="TCj-kv-xaX" secondAttribute="centerY" id="2dM-ZT-vsE"/>
+                            <constraint firstItem="TCj-kv-xaX" firstAttribute="top" secondItem="dnN-IN-3vC" secondAttribute="bottom" constant="30" id="3Xe-Iz-fpn"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="EEB-R3-Cfh" secondAttribute="bottom" constant="20" id="5RS-cy-nqx"/>
+                            <constraint firstAttribute="centerX" secondItem="dnN-IN-3vC" secondAttribute="centerX" id="7qv-Xa-Un3"/>
+                            <constraint firstAttribute="centerX" secondItem="EEB-R3-Cfh" secondAttribute="centerX" id="MUk-yE-cwy"/>
+                            <constraint firstAttribute="centerX" secondItem="TCj-kv-xaX" secondAttribute="centerX" id="vuO-YK-oy3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_launcher.png" width="167" height="167"/>
+    </resources>
+</document>

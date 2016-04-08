@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>device</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>一键购买</string>
+			<key>image</key>
+			<string>view_settingiv_1.png</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>设备管理</string>
+			<key>image</key>
+			<string>view_settingiv_2.png</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>添加设备</string>
+			<key>image</key>
+			<string>view_settingiv_3.png</string>
+		</dict>
+	</array>
+	<key>setting</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>设置</string>
+			<key>image</key>
+			<string>view_settingiv_4.png</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>帮助</string>
+			<key>image</key>
+			<string>view_settingiv_5.png</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>反馈</string>
+			<key>image</key>
+			<string>view_settingiv_6.png</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>关于</string>
+			<key>image</key>
+			<string>view_settingiv_7.png</string>
+		</dict>
+	</array>
+</dict>
+</plist>

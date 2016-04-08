@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTableViewCell" id="KGk-i7-Jjw" customClass="UserTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="view_userface.png" translatesAutoresizingMaskIntoConstraints="NO" id="gaZ-Z8-5hf">
+                        <rect key="frame" x="15" y="8" width="54" height="54"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="54" id="Kia-A1-ryX"/>
+                            <constraint firstAttribute="width" secondItem="gaZ-Z8-5hf" secondAttribute="height" multiplier="1:1" id="X9P-GJ-ygT"/>
+                        </constraints>
+                    </imageView>
+                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="chen" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="htB-oC-qTI">
+                        <rect key="frame" x="87" y="23" width="195" height="23"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="137****5785" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6O-pJ-ATP">
+                        <rect key="frame" x="86" y="40" width="84" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="gaZ-Z8-5hf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="D6m-Nh-8Zb"/>
+                    <constraint firstAttribute="centerY" secondItem="gaZ-Z8-5hf" secondAttribute="centerY" id="V0H-wT-ydR"/>
+                    <constraint firstItem="htB-oC-qTI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fFV-zo-LuO"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="htB-oC-qTI" secondAttribute="trailing" constant="30" id="nRa-YZ-NBL"/>
+                    <constraint firstItem="htB-oC-qTI" firstAttribute="leading" secondItem="gaZ-Z8-5hf" secondAttribute="trailing" constant="18" id="xb4-Pc-Byx"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="subviews">
+                        <exclude reference="h6O-pJ-ATP"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="imgUser" destination="gaZ-Z8-5hf" id="wyD-81-aje"/>
+                <outlet property="txtUserName" destination="htB-oC-qTI" id="YHi-1P-FWr"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="view_userface.png" width="50" height="50"/>
+    </resources>
+</document>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>无</string>
+	<string>1小时</string>
+	<string>2小时</string>
+	<string>3小时</string>
+	<string>4小时</string>
+	<string>5小时</string>
+	<string>6小时</string>
+	<string>7小时</string>
+	<string>8小时</string>
+	<string>9小时</string>
+	<string>10小时</string>
+	<string>11小时</string>
+	<string>12小时</string>
+</array>
+</plist>

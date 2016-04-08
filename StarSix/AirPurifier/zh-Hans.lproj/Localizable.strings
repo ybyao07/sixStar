@@ -1,0 +1,8 @@
+/* 
+  Localizable.strings
+  AirPurifier
+
+  Created by bluE on 14-10-11.
+  Copyright (c) 2014年 skyware. All rights reserved.
+*/
+"TEXT_ShARE_FAI" = "分享失败,错误码:%d,错误描述:%@";

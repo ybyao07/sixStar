@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>风速 无</string>
+	<string>风速 1</string>
+	<string>风速 2</string>
+	<string>风速 3</string>
+	<string>风速 4</string>
+	<string>风速 5</string>
+</array>
+</plist>
