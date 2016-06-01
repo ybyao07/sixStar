@@ -9,7 +9,7 @@
 #import "SettingTableViewController.h"
 #import "DeviceSettingTimeModel.h"
 #import "CustomModel.h"
-#import "SkywareDeviceManagement.h"
+#import "SkywareDeviceManager.h"
 #import "TimeModeTableViewController.h"
 #import "TimeSetTableViewCell.h"
 #import "UIView+Toast.h"
@@ -44,7 +44,7 @@
 }
 -(void)downloadData
 {
-    [SkywareDeviceManagement DeviceGetAllDevicesSuccess:^(SkywareResult *result) {
+    [SkywareDeviceManager DeviceGetAllDevicesSuccess:^(SkywareResult *result) {
         [SVProgressHUD dismiss];
         if ([result.message intValue] == 200) {
             if (self.dataList.count) {
@@ -73,20 +73,16 @@
             }
             [self.tableView reloadData];
         }
-        else{
-            [self.view makeToast:@"获取设备列表失败"];
-        }
     }];
 }
 
 -(void)initNavView
 {
     if(_isTime){
-        [self addBarItemTitle:@"定时"];
+        [self setNavTitle:@"定时"];
     }else{
-        [self addBarItemTitle:@"智能模式"];
+        [self setNavTitle:@"智能模式"];
     }
-    [self addBarBackButtonItemWithImageName:@"back_normal" selImageName:@"back_pressed" action:@selector(onBack)];
 }
 #pragma mark UITableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

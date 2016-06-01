@@ -8,6 +8,12 @@
 
 #import "DeviceData.h"
 #import "UtilConversion.h"
+@interface DeviceData()
+{
+    NSTimer *_settingCalculateTimer; //校准时间定时器
+    NSString *_tempCalculateTimeStr;
+}
+@end
 @implementation DeviceData
 
 static const long  kLength = 2;
@@ -365,16 +371,50 @@ static const long  valueLengthStep = 2;
 -(void)setCmdCalibarateTime:(NSString *)cmdString
 {
     if (cmdString.length) {
-        _calibarateTime = [NSString stringWithFormat:@"%ld-%ld-%ld %ld:%ld",
+        _calibarateTime = [NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld",
                            [UtilConversion toDecimalFromHex:[cmdString substringToIndex:4]],
                            [UtilConversion toDecimalFromHex:[cmdString substringWithRange:NSMakeRange(4, 2)]],
                            [UtilConversion toDecimalFromHex:[cmdString substringWithRange:NSMakeRange(6, 2)]],
                            [UtilConversion toDecimalFromHex:[cmdString substringWithRange:NSMakeRange(8, 2)]],[UtilConversion toDecimalFromHex:[cmdString substringWithRange:NSMakeRange(10, 2)]]
                            ];
+        _tempCalculateTimeStr = _calibarateTime;
+        [self startCalculateTimer];
     }
 }
 
-//启动app获取设备列表之后，对比当前时间是否与设备返回的当前时间相同，如果不相同则发送校准时间的指令
-//如果时间不对，则发送校准时间的指令
+//添加校准定时器，时时更新设备的当前时间
+-(void)startCalculateTimer
+{
+    if (_settingCalculateTimer == nil) {
+        _settingCalculateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateDeviceTime) userInfo:nil repeats:YES];
+    }
+}
+-(void)updateDeviceTime
+{
+    //时间转秒再加1转成 时分秒
+    // _deviceTime  = @"测试0000";
+    //手机时间-服务器获取的SkywareDeviceInfoModel里面的更新时间
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if (_serverUpdateTime!=0) {
+        NSTimeInterval cha = (now - _serverUpdateTime);
+        _calibarateTime = [self getDeviceCalulateTime:_tempCalculateTimeStr withTimeInterval:cha];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotifactionUpdateCaculateTime object:nil];
+    }
+}
+
+-(NSString *)getDeviceCalulateTime:(NSString *)time withTimeInterval:(NSTimeInterval )interval
+{
+    //将_deviceTime 转成NSDate(NSString 转NSDate )加上 时间差 再转成 @“xx:xx:xx”格式
+    //1---- NSString 转成NSDate
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate *deviceDate = [dateFormatter dateFromString:_tempCalculateTimeStr];
+    //2---NDDate + NSTimeInterval
+    NSDate *deviceCurrentDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:deviceDate];
+    //3---NSDate转NSString
+    NSString *strDate = [dateFormatter stringFromDate:deviceCurrentDate];
+    return strDate;
+}
+
 
 @end

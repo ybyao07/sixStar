@@ -7,7 +7,7 @@
 //
 
 #import "SetShowTimerModel.h"
-#import "TimeUtil.h"
+#import "TimeUtilDiff.h"
 #import "DeviceData.h"
 
 
@@ -151,22 +151,22 @@
     int theNearbyTimerIndex = 0;
     double difference = 0.0;
     CustomModel *model = [arrayOpen objectAtIndex:0];
-    difference = [TimeUtil getIntervalTimeFromLastDate:currentTime toTheDate:model.openTime];
+    difference = [TimeUtilDiff getIntervalTimeFromLastDate:currentTime toTheDate:model.openTime];
     for(int i = 1; i < arrayOpen.count; i++){
         CustomModel *model = [arrayOpen objectAtIndex:i];
         if (difference > 0) {
-            if (difference > [TimeUtil getIntervalTimeFromLastDate:currentTime toTheDate:model.openTime] ) {
-                difference = [TimeUtil getIntervalTimeFromLastDate:currentTime toTheDate:model.openTime];
+            if (difference > [TimeUtilDiff getIntervalTimeFromLastDate:currentTime toTheDate:model.openTime] ) {
+                difference = [TimeUtilDiff getIntervalTimeFromLastDate:currentTime toTheDate:model.openTime];
                 theNearbyTimerIndex = i;
             }
         }else{
-            difference = [TimeUtil getIntervalTimeFromLastDate:currentTime toTheDate:model.openTime];
+            difference = [TimeUtilDiff getIntervalTimeFromLastDate:currentTime toTheDate:model.openTime];
             theNearbyTimerIndex = i;
         }
     }
     //计算还有多久开机
     CustomModel *startTimemodel = [arrayOpen objectAtIndex:theNearbyTimerIndex];
-    NSArray *theNearbyTimeArray = [TimeUtil intervalFromLastDate:currentTime toTheDate:startTimemodel.openTime];
+    NSArray *theNearbyTimeArray = [TimeUtilDiff intervalFromLastDate:currentTime toTheDate:startTimemodel.openTime];
     if ([[theNearbyTimeArray objectAtIndex:0] intValue] > 0 || [[theNearbyTimeArray objectAtIndex:1] intValue] > 0) {
          return [NSString stringWithFormat:@"%d小时%d分钟后开启", [[theNearbyTimeArray objectAtIndex:0] intValue],[[theNearbyTimeArray objectAtIndex:1] intValue]];
     }else{
@@ -197,8 +197,8 @@
     if (model.isOpen) {
         if(model.openTime.length == 5){
             int startHour,startMin,endHour,endMin;
-            NSArray *timeStartArray = [TimeUtil intervalFromLastDate:currentTime toTheDate:model.openTime];
-            NSArray *timeCloseArray = [TimeUtil intervalFromLastDate:currentTime toTheDate:model.closeTime];
+            NSArray *timeStartArray = [TimeUtilDiff intervalFromLastDate:currentTime toTheDate:model.openTime];
+            NSArray *timeCloseArray = [TimeUtilDiff intervalFromLastDate:currentTime toTheDate:model.closeTime];
             startHour = [[timeStartArray objectAtIndex:0] intValue];
             startMin = [[timeStartArray objectAtIndex:1] intValue];
             endHour = [[timeCloseArray objectAtIndex:0] intValue];

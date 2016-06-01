@@ -4,7 +4,7 @@
 //
 
 #import "AlertBoxViewController.h"
-#import "AirPurifierAppDelegate.h"
+#import "AppDelegate.h"
 
 @interface AlertBoxViewController ()
 {
@@ -89,7 +89,6 @@
 
 - (IBAction)okButtonOnClicked:(id)sender
 {
-    DDLogFunction();
     [self dismiss:^
     {
         if (_delegate && [_delegate respondsToSelector:@selector(alertBoxOkButtonOnClicked)])

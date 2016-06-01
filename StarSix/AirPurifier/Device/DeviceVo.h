@@ -29,7 +29,6 @@
 @property (nonatomic,strong) NSString *deviceLock;// 设备是否锁定
 @property (nonatomic,strong) NSString *deviceAddress;// 设备地址
 
-
 @property (nonatomic,strong) DeviceData *deviceData;
 //地区信息
 @property (nonatomic,strong) NSString *deviceCity;
@@ -40,10 +39,11 @@
 @property (nonatomic,strong) NSString *devicePmv;
 
 //设备型号判断
-@property (nonatomic,strong) NSString *productId;//根据此判断设备型号是A300还是A500（4为300，1为500）
+@property (nonatomic,strong) NSString *productId;
 
-//@property (nonatomic,strong) CurrentWeather *currentWeather;//室外天气
-//@property (nonatomic,strong) NSString *currentOutPm;
+
+@property (nonatomic,copy) NSString *user_state; //主用户0，分享用户1
+
 
 -(DeviceVo *)initWithDic:(NSDictionary *)dic;
 

@@ -11,12 +11,11 @@
 #import "PureLayout.h"
 #import "RadioTableViewCell.h"
 #import "SwitchHeaderView.h"
-#import "UIColor+Category.h"
 #import "CO2TableViewCell.h"
 #import "PMSetTableViewCell.h"
 #import "YBPmPickerView.h"
 #import "AirPurifierViewController.h"
-#import "AirPurifierAppDelegate.h"
+#import "AppDelegate.h"
 #import "UtilConversion.h"
 #import "SendCommandManager.h"
 #import "IQKeyboardManager.h"
@@ -69,8 +68,7 @@ static const NSInteger CO2SettingValueMax = 1800;
 
 -(void)initNavView
 {
-    [self addBarItemTitle:@"智能模式"];
-    [self addBarBackButtonItemWithImageName:@"back_normal" selImageName:@"back_pressed" action:@selector(onBack)];
+    [self setNavTitle:@"智能模式"];
 }
 
 #pragma mark UITableViewDelegate
@@ -91,13 +89,13 @@ static const NSInteger CO2SettingValueMax = 1800;
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 64)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 64)];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_white"]];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.frame = CGRectMake(0, 20, kScreenW, 44);
+    imageView.frame = CGRectMake(0, 20, kWindowWidth, 44);
     [bgView addSubview:imageView];
 
-    SwitchHeaderView *switchHeader = [[SwitchHeaderView alloc] initWithFrame:CGRectMake(0, 20, kScreenW, 44)];
+    SwitchHeaderView *switchHeader = [[SwitchHeaderView alloc] initWithFrame:CGRectMake(0, 20, kWindowWidth, 44)];
     switchHeader.backgroundColor = [UIColor whiteColor];
     switchHeader.block = ^(BaseModel *model,UISwitch *swithM){
         _currentFanModel.status = swithM.isOn; //开启，关闭模式
@@ -318,7 +316,7 @@ static const NSInteger CO2SettingValueMax = 1800;
     [self.tableView reloadData];
 }
 
--(void)onBack
+-(void)NavBackBtnClick
 {
     if (_currentFanModel.status) {
         if (_currentFanModel.inteMode==0) {

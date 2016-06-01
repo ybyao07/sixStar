@@ -14,11 +14,29 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "DDLog.h"
-    #import "Globals.h"
     #import "DeviceStatusConst.h"
-    #import "AFNetworking.h"
-    #import "UIColor+Category.h"
+    #import <SkywareSDK.h>
+    #import <ImportClass.h>
+    #import <UIColor+Extension.h>
 #endif
+
+#define CurrentTime @"currentTime"
+//自定义颜色
+#define myColor(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+
+#define MainDelegate                ((AppDelegate *)[UIApplication sharedApplication].delegate)
+#define UserDefault                 [NSUserDefaults standardUserDefaults]
+#define NotificationCenter          [NSNotificationCenter defaultCenter]
+
+#define DeviceModeChangeNotification @"DeviceModeChangeNotification"
+#define NotifactionUpdateCaculateTime @"NotifactionUpdateCaculateTime"
+
+
+#define NoDeviceHint @"您还木有绑定新风机\n点击“+”来绑定"
+
+#define isEmptyString( str )  (( str == nil || str == NULL || [str isEqualToString:@""] || [[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] ) ? YES : NO)
+#define isObject(obj) [obj isEqual:[NSNull null]] ? NO : YES
+#define isNull(obj) ([obj isEqual:[NSNull null]] || obj == NULL || obj == nil )? NO : YES
 
 
 #define kNavigationBarColor [UIColor colorWithHexString:@"009E96"]

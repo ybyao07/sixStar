@@ -39,7 +39,7 @@
 - (void) cleanMethod
 {
     [UIView animateWithDuration:0.4f animations:^{
-        self.y = kScreenH;
+        self.y = kWindowHeight;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
         if (self.cleanClick) {

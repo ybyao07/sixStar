@@ -39,6 +39,8 @@
 @property (nonatomic,strong) CustomModel *timeTwo;
 @property (nonatomic,strong) CustomModel *timeThree;
 
+@property (nonatomic,assign) NSTimeInterval serverUpdateTime;
+
 
 -(instancetype)initWithBase64String:(NSString *)base64String;
 

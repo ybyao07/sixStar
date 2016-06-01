@@ -56,7 +56,7 @@
     self.lblDeviceName = deviceName;
     
     UILabel *indicator = [[UILabel alloc] init];
-    indicator.frame = CGRectMake(kScreenW - 80, 0, 60, self.frame.size.height);
+    indicator.frame = CGRectMake(kWindowWidth - 80, 0, 60, self.frame.size.height);
     indicator.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:indicator];
     self.lblLockingIndicator = indicator;

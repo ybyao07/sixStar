@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIFlipperView.h"
 #import "DeviceVo.h"
-@interface DeviceView : UIFlipperView
+@interface DeviceView : UIView
 
 @property (weak, nonatomic) IBOutlet UIView *viewTop;
 

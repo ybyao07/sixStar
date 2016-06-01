@@ -7,7 +7,6 @@
 //
 
 #import "DeviceVo.h"
-#import "JSON.h"
 
 @implementation DeviceVo
 
@@ -40,22 +39,6 @@
                     hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
             }
             self.deviceData = [[DeviceData alloc] initWithBase64String:hexStr];
-#warning test--start
-//                NSString *testData = @"EAEgBiEDMQoyAmwzAa40AD5BAEIAQwNEHkUH0FAUUQAAAABSAAAAAFMAAAAAYQPoYgNxAHNyABtzAA10AAF1Ahx2AAV3ADUBB9gBAwUBDwAAYwAK";
-//                NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:testData options:0];//base64解码
-//                Byte *bytes = (Byte *)[dataFromString bytes];
-//                NSString *hexStr=@"";
-//                for(int i=0;i<[dataFromString length];i++)
-//                {
-//                    NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
-//                    if([newHexStr length]==1)
-//                        hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
-//                    else
-//                        hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
-//                }
-//                self.deviceData = [[DeviceData alloc] initWithBase64String:hexStr];
-#warning test--end
-            
         }
         else{
             self.deviceData = [[DeviceData alloc] init];
@@ -95,6 +78,7 @@
     copy.deviceAreaId = [self.deviceAreaId copyWithZone:zone];
     copy.deviceDistrict = [self.deviceDistrict copyWithZone:zone];
     copy.devicePmv = [self.devicePmv copyWithZone:zone];
+    copy.deviceData = self.deviceData;
     return copy;
 }
 

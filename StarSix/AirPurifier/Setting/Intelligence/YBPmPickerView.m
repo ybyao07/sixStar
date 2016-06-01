@@ -51,7 +51,7 @@
 -(void)addCoverBlackView
 {
     UIView *view = [[UIApplication sharedApplication].windows lastObject];
-    coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width,kScreenH)];
+    coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width,kWindowHeight)];
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remove)];
     coverView.backgroundColor = [UIColor blackColor];
     coverView.alpha = 0.5;
@@ -73,7 +73,7 @@
     return toolbar;
 }
 -(void)setToolbarWithPickViewFrame{
-    _toolbar.frame = CGRectMake(0, 0, kScreenW, kToobarHeight);
+    _toolbar.frame = CGRectMake(0, 0, kWindowWidth, kToobarHeight);
 }
 -(void)setFrame{
     CGFloat toolViewX = 0;
@@ -159,7 +159,7 @@
     [UIView animateWithDuration:kDuration animations:^{
         self.frame = CGRectMake(0, view.frame.size.height-self.frame.size.height, self.frame.size.width, self.frame.size.height);
         //移动蒙版
-        coverView.frame = CGRectMake(0,0, kScreenW, kScreenH-self.frame.size.height);
+        coverView.frame = CGRectMake(0,0, kWindowWidth, kWindowHeight-self.frame.size.height);
     }];
 }
 -(void)cancelPicker

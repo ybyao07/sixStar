@@ -1,5 +1,6 @@
-xcodeproj 'AirPurifier.xcodeproj'
+platform :ios, '7.0'
 
-pod 'MQTTKit', :git => 'https://github.com/jmesnil/MQTTKit.git'
+pod 'SkywareUI'
 
-platform :ios, '6.0'
+#pod 'Pgyer'
+#pod 'PgyUpdate'

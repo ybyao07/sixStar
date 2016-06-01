@@ -25,7 +25,7 @@
         BOOL succeeded = [cities writeToFile:filePath atomically:YES];
         if (!succeeded)
         {
-            DDLogError(@"Failed to write to file: %@", filePath);
+//            DDLogError(@"Failed to write to file: %@", filePath);
         }
     }
     else
@@ -43,7 +43,7 @@
     NSString *fileContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (error)
     {
-        DDLogError(@"%@", error);
+//        DDLogError(@"%@", error);
         return nil;
     }
     NSArray *lines = [fileContent componentsSeparatedByString:@"\n"];
@@ -66,7 +66,7 @@
             [cities addObject:city];
         }
     }
-    DDLogInfo(@"Cities (%d):\n%@", cities.count, cities);
+//    DDLogInfo(@"Cities (%d):\n%@", cities.count, cities);
     return cities;
 }
 
@@ -74,14 +74,15 @@
 {
 //    DDLogFunction();
     if (!city) return;
-    [[NSUserDefaults standardUserDefaults] setObject:city forKey:kSelectedCity];
+//    [[NSUserDefaults standardUserDefaults] setObject:city forKey:kSelectedCity];
 }
 
 
 + (NSDictionary *)selectedCity
 {
     //    DDLogFunction();
-    NSDictionary *city = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kSelectedCity];
+    NSDictionary *city;
+//    [[NSUserDefaults standardUserDefaults] dictionaryForKey:kSelectedCity];
     //    DDLogInfo(@"Selected city: %@", city);
     NSLog(@"ybyao-----Selected city:%@",city);
     return city;
@@ -89,7 +90,7 @@
 + (void)removeSelectedCity
 {
 //    DDLogFunction();
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSelectedCity];
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSelectedCity];
 }
 
 

@@ -8,9 +8,10 @@
 
 #import "SendCommandManager.h"
 #import "UtilConversion.h"
-#import "TimeUtil.h"
+#import "TimeUtilDiff.h"
 #import <math.h>
-#import "SkywareDeviceManagement.h"
+#import "CommandSave.h"
+#import "SkywareDeviceManager.h"
 
 @implementation SendCommandManager
 
@@ -18,31 +19,38 @@
 {
     [self setDeviceId:skywareInfo];
     DeviceData *data = skywareInfo.deviceData;
+    NSString *commandCode;
     if(data.btnPower.boolValue){ //设备开机，发送关机指令
-        [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"1000"];
+        commandCode = @"1000";
     }else{//设备关机，发送开机指令
-        [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"1001"];
+        commandCode = @"1001";
     }
+    [SkywareDeviceManager DeviceAutoPushCMDWithData:commandCode];
+    CommandSave *cmd = [[CommandSave alloc] init];
+    cmd.mac = skywareInfo.deviceMac;
+    cmd.cmdCode = commandCode;
+    cmd.time =@"";//暂留
+    [CommandSave writeCommandSave:cmd];
 }
 
 +(void)sendFanFrequency:(DeviceVo *)skywareInfo
 {
     [self setDeviceId:skywareInfo];
     DeviceData *data = skywareInfo.deviceData;
-    [SkywareDeviceManagement DevicePushCMDWithEncodeData:[SendCommandManager getFrequencyCmdOnCurrentFre:data.fanFrequency]];
+    [SkywareDeviceManager DeviceAutoPushCMDWithData:[SendCommandManager getFrequencyCmdOnCurrentFre:data.fanFrequency]];
 }
 
 
 +(void)sendSettingTimeCmd:(DeviceVo *)skywareInfo withCmd:(NSString *)strCmd
 {
     [self setDeviceId:skywareInfo];
-    [SkywareDeviceManagement DevicePushCMDWithEncodeData:strCmd];
+    [SkywareDeviceManager DeviceAutoPushCMDWithData:strCmd];
 }
 
 +(void)sendIntelligenceCmd:(DeviceVo *)skywareInfo withCmd:(NSString *)strCmd
 {
     [self setDeviceId:skywareInfo];
-    [SkywareDeviceManagement DevicePushCMDWithEncodeData:strCmd];
+    [SkywareDeviceManager DeviceAutoPushCMDWithData:strCmd];
 }
 
 +(void)sendCalibrateTimeCmd:(DeviceVo *)skywareInfo
@@ -72,18 +80,18 @@
                          [UtilConversion decimalToHex:hour],
                          [UtilConversion decimalToHex:minute]
                          ];
-        [SkywareDeviceManagement DevicePushCMDWithEncodeData:cmd];
+        [SkywareDeviceManager DeviceAutoPushCMDWithData:cmd];
     }
 }
 
 
 +(void)setDeviceId:(DeviceVo *)skywareInfo
 {
-    if (skywareInfo==nil) { //如果没有设备信息
-        [SkywareInstanceModel sharedSkywareInstanceModel].device_id = @"";
-        return;
-    }
-    [SkywareInstanceModel sharedSkywareInstanceModel].device_id = skywareInfo.deviceId;
+//    if (skywareInfo==nil) { //如果没有设备信息
+//        [SkywareDeviceInfoModel sharedSkywareInstanceModel].device_id = @"";
+//        return;
+//    }
+//    [SkywareInstanceModel sharedSkywareInstanceModel].device_id = skywareInfo.deviceId;
 }
 
 +(NSString *)getFrequencyCmdOnCurrentFre:(long)currentFre

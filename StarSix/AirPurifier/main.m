@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "AirPurifierAppDelegate.h"
+#import "AppDelegate.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AirPurifierAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

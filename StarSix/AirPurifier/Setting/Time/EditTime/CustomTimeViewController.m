@@ -36,8 +36,8 @@
 }
 -(void)initNavView
 {
-    [self addBarItemTitle:@"编辑时间段"];
-    [self addBarBackButtonItemWithImageName:@"back_normal" selImageName:@"back_pressed" action:@selector(onBack)];
+    [self setNavTitle:@"编辑时间段"];
+//    [self addBarBackButtonItemWithImageName:@"back_normal" selImageName:@"back_pressed" action:@selector(onBack)];
 }
 #pragma mark - Method
 - (void) addNavRightBtn
@@ -136,7 +136,7 @@
 
     NSArray *array = [define componentsSeparatedByString:@":"];
     [array enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL *stop) {
-        [pick.pickView selectRow:[[str getTheCorrect] integerValue] inComponent:idx animated:YES];
+//        [pick.pickView selectRow:[[str getTheCorrect] integerValue] inComponent:idx animated:YES];
     }];
 }
 
@@ -172,7 +172,7 @@
     return attributedString;
 }
 
--(void)onBack
+-(void)NavBackBtnClick
 {
     _customModel.openTime  = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel.text;
     _customModel.closeTime = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.text;

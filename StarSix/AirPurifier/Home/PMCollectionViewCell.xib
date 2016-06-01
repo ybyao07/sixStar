@@ -55,7 +55,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <animations/>
-            <color key="backgroundColor" red="0.63137254901960782" green="0.84705882352941175" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.070588235294117646" green="0.69803921568627447" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="kHx-G8-TOK" secondAttribute="centerX" id="20N-Y8-UhH"/>
                 <constraint firstItem="gWc-x6-sNd" firstAttribute="leading" secondItem="s49-IT-Mxb" secondAttribute="trailing" constant="2" id="4EF-Af-MrI"/>

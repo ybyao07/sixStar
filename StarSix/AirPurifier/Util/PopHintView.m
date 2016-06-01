@@ -25,7 +25,7 @@
 {
     self= [super initWithFrame:frame];
     if (self!=nil) {
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, kScreenW - 40, 40)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, kWindowWidth - 40, 40)];
         [btn setBackgroundImage:[UIImage imageNamed:@"pop_background"] forState:UIControlStateNormal];
         [btn setTitle:title forState:UIControlStateNormal];
         [self addSubview:btn];
@@ -40,7 +40,7 @@
 +(void)showViewWithTitle:(NSString *)title
 {
     UIView * view = [[UIApplication sharedApplication].windows lastObject];
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, kScreenW - 40, 40)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, kWindowWidth - 40, 40)];
     [btn setBackgroundImage:[UIImage imageNamed:@"pop_background"] forState:UIControlStateNormal];
     [btn setTitle:title forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:14.0];
@@ -53,7 +53,7 @@
 +(void)showAlertViewWithTitle:(NSString *)title iconImage:(NSString *)iconStr
 {
     UIView * view = [[UIApplication sharedApplication].windows lastObject];
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW-60, 70)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-60, 70)];
     bgView.tag = 1111111;
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, bgView.bounds.size.width, bgView.bounds.size.height)];
     imgView.image = [UIImage imageNamed:@"alterBackground"];

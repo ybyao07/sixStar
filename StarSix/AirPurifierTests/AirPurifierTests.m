@@ -28,9 +28,18 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-    
-    
+//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
 
+
+//测试以WF开头的正则表达式
+-(void)testRegsPreWF
+{
+    NSString *WFPre = @"^WF.{12}$";
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",WFPre];
+//    BOOL isCorrect = [pre evaluateWithObject:@"WFaaaaa"];
+    XCTAssertEqual([pre evaluateWithObject:@"WFDDDDEEEEAAA!"], YES);
+    XCTAssertEqual([pre evaluateWithObject:@"aaasfa"], NO);
+    
+}
 @end

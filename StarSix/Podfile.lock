@@ -1,19 +1,97 @@
 PODS:
-  - MQTTKit (0.1.0-next)
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - CocoaAsyncSocket (7.4.3):
+    - CocoaAsyncSocket/All (= 7.4.3)
+  - CocoaAsyncSocket/All (7.4.3):
+    - CocoaAsyncSocket/GCD
+    - CocoaAsyncSocket/RunLoop
+  - CocoaAsyncSocket/GCD (7.4.3)
+  - CocoaAsyncSocket/RunLoop (7.4.3)
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.2.0):
+    - CocoaLumberjack/Default
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - HF_SmartLink (1.0.0)
+  - IQKeyboardManager (3.3.7)
+  - LXFrameWork_OC (2.6.1):
+    - AFNetworking
+    - FMDB
+    - IQKeyboardManager
+    - MJExtension
+    - MJRefresh
+    - PureLayout
+    - Reachability
+    - SDWebImage
+    - SSZipArchive
+    - SVProgressHUD
+  - MJExtension (3.0.10)
+  - MJRefresh (3.1.0)
+  - MOBFoundation_IDFA (1.5.1)
+  - MQTTClient (0.7.4):
+    - MQTTClient/Core (= 0.7.4)
+  - MQTTClient/Core (0.7.4):
+    - CocoaLumberjack
+  - PureLayout (3.0.1)
+  - Reachability (3.2)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SkywareSDK (1.1.8):
+    - CocoaAsyncSocket
+    - HF_SmartLink
+    - LXFrameWork_OC
+    - MQTTClient
+  - SkywareUI (1.2.0):
+    - MOBFoundation_IDFA
+    - SkywareSDK
+    - SMSSDK
+  - SMSSDK (2.0.4)
+  - SSZipArchive (1.1)
+  - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
-  - MQTTKit (from `https://github.com/jmesnil/MQTTKit.git`)
-
-EXTERNAL SOURCES:
-  MQTTKit:
-    :git: https://github.com/jmesnil/MQTTKit.git
-
-CHECKOUT OPTIONS:
-  MQTTKit:
-    :commit: aaf4a22a67102b8860e80f2005257eb4d8169988
-    :git: https://github.com/jmesnil/MQTTKit.git
+  - SkywareUI
 
 SPEC CHECKSUMS:
-  MQTTKit: 513ffc31464db7adeffefac986e228fdf6cd87e5
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  HF_SmartLink: f9759d4ace7f4f6771ec39fb14929b30312f5747
+  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
+  LXFrameWork_OC: e486bde758d575a4873a238e6958737a66f8c8a7
+  MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  MOBFoundation_IDFA: f5d3d1f89166f60c6985e34b7d90e6fb5d58fb61
+  MQTTClient: 1c1bedf87249a317ee9324b93252867bbc443ec7
+  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SkywareSDK: 45a2964143be266f90ae4fbae02356c69b973d48
+  SkywareUI: 4f354b4d0272b1760ef1df35318cbb81284000cc
+  SMSSDK: 642b6a8c55fd382be44487cd5e0b0710681895f9
+  SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-COCOAPODS: 0.36.1
+COCOAPODS: 0.39.0

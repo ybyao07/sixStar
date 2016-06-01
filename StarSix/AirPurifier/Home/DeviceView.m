@@ -10,13 +10,12 @@
 #import "UIColor+Utility.h"
 #import "PlistManager.h"
 #import "AlertBox.h"
-#import "UtilImage.h"
 #import "PMCollectionViewCell.h"
 #import "TempCollectionViewCell.h"
 #import "LabelCollectionViewCell.h"
 #import "PureLayout.h"
 #import "AirPurifierViewController.h"
-#import "AirPurifierAppDelegate.h"
+#import "AppDelegate.h"
 #import "SendCommandManager.h"
 #import "ModelNotice.h"
 #import "Util.h"
@@ -59,7 +58,9 @@
 //@property (strong,nonatomic) UIAlertView  *wifiAlertView;
 
 
-@property (nonatomic,strong) UICollectionView *myCollectionView;
+//@property (nonatomic,weak) IBOutlet UICollectionView *myCollectionView;
+@property (nonatomic,strong)  UICollectionView *myCollectionView;
+
 
 @end
 @implementation DeviceView
@@ -75,25 +76,42 @@ static const NSInteger  fanFrequencyMax = 50;  //风机最高频率
     return [nibView objectAtIndex:0];
 }
 
-//如果你要加点什么东西  就重载 initWithCoder
--(id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if(self)
-    {
-        _currentFanFrequency = 30;
+-(void)awakeFromNib{
+    [super awakeFromNib];
+    _currentFanFrequency = 30;
+    CGFloat viewHeight = kWindowHeight - 54 - 64;
+    if (IS_IPHONE_4_OR_LESS) {
+        _viewTopHeight.constant = viewHeight*280/544;
+    }else{
+        _viewTopHeight.constant = viewHeight*46/100;
     }
-    return self;
+    UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
+    flowlayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    flowlayout.sectionInset = UIEdgeInsetsMake(kMargin, kMargin, kMargin, kMargin);
+    flowlayout.minimumLineSpacing = kLineSpacing;
+    flowlayout.minimumInteritemSpacing = 0;
+
+    self.myCollectionView =
+    [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, _viewTopHeight.constant) collectionViewLayout:flowlayout];
+    self.myCollectionView.backgroundColor= [UIColor whiteColor];
+    self.myCollectionView.delegate = self;
+    self.myCollectionView.dataSource = self;
+    
+    self.myCollectionView.showsHorizontalScrollIndicator = NO;
+    [self.myCollectionView registerNib:[UINib nibWithNibName:@"PMCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"PMCollectionViewCell"];
+    [self.myCollectionView registerNib:[UINib nibWithNibName:@"TempCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"TempCollectionViewCell"];
+    [self.myCollectionView registerNib:[UINib nibWithNibName:@"LabelCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LabelCollectionViewCell"];
+    [_viewTop addSubview:_myCollectionView];
 }
 
 -(void)layoutSubviews
 {
     if (IS_IPHONE_6 || IS_IPHONE_6P) {
-        self.frame = CGRectMake(0, 0, kScreenW, kScreenH-70-64);
+        self.frame = CGRectMake(4, 0, kWindowWidth, kWindowHeight-70-64);
     }else{
-        self.frame = CGRectMake(0, 0, kScreenW, kScreenH-54-64);
+        self.frame = CGRectMake(4, 0, kWindowWidth, kWindowHeight-54-64);
     }
-    CGFloat viewHeight = kScreenH - 54 - 64;
+    CGFloat viewHeight = kWindowHeight - 54 - 64;
     if (IS_IPHONE_4_OR_LESS) {
         _frequenceValue.font = [UIFont systemFontOfSize:42];
         _rotateSpeed.font = [UIFont systemFontOfSize:44];
@@ -112,23 +130,6 @@ static const NSInteger  fanFrequencyMax = 50;  //风机最高频率
         _windSpeedBottomStraint.constant = (viewHeight*43/100)*65/450 ;
         _frequencyViewHeightConstraint.constant = (viewHeight*43/100)*150/450;
     }
-    UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
-    flowlayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    flowlayout.sectionInset = UIEdgeInsetsMake(kMargin, kMargin, kMargin, kMargin);
-    flowlayout.minimumLineSpacing = kLineSpacing;
-    flowlayout.minimumInteritemSpacing = 0;
-    
-    self.myCollectionView =
-    [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, _viewTopHeight.constant) collectionViewLayout:flowlayout];
-    self.myCollectionView.backgroundColor= [UIColor whiteColor];
-    self.myCollectionView.delegate = self;
-    self.myCollectionView.dataSource = self;
-    
-    self.myCollectionView.showsHorizontalScrollIndicator = NO;
-    [self.myCollectionView registerNib:[UINib nibWithNibName:@"PMCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"PMCollectionViewCell"];
-    [self.myCollectionView registerNib:[UINib nibWithNibName:@"TempCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"TempCollectionViewCell"];
-    [self.myCollectionView registerNib:[UINib nibWithNibName:@"LabelCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LabelCollectionViewCell"];
-    [_viewTop addSubview:_myCollectionView];
     [_myCollectionView reloadData];
     [super layoutSubviews];
 }
@@ -151,7 +152,7 @@ static const NSInteger  fanFrequencyMax = 50;  //风机最高频率
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((kScreenW-2*kMargin-2*kLineSpacing)/3, (_viewTop.bounds.size.height-2*kMargin-kLineSpacing)/2.0);
+    return CGSizeMake((kWindowWidth-2*kMargin-2*kLineSpacing)/3.0, (_viewTop.bounds.size.height-2*kMargin-kLineSpacing)/2.0);
 }
 
 
@@ -179,50 +180,28 @@ static const NSInteger  fanFrequencyMax = 50;  //风机最高频率
         [tempCell updateView:_deviceModel isInside:YES];
         return tempCell;
     }else if (indexPath.row == 5){
-        tempCell.backgroundColor = myColor(250, 193, 26);
+//        tempCell.backgroundColor = myColor(250, 193, 26);
         [tempCell updateView:_deviceModel isInside:NO];
         return tempCell;
     }else{
         return tempCell;
     }
 }
-//-(NSArray*)layoutAttributesForElementsInRect:(CGRect)rect
-//{
-//    NSMutableArray* attributes = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
-//
-//
-//    for (UICollectionViewLayoutAttributes *attr in attributes) {
-//        NSLog(@"%@", NSStringFromCGRect([attr frame]));
-//    }
-//}
 
 #pragma mark----控制频率，风量---- 增加或者减少，以5为间隔
 - (IBAction)decreaseClicked:(UIButton *)sender {
-    NSString *lastTime = [UserDefault objectForKey:CurrentTime];
-    [Util storeCurrentTime];
-    //获取时间差，防止按钮被连续点击ybyao07
-//    if (lastTime == nil || [Util GetStringTimeDiff:lastTime timeE:[Util GetCurTime]] > 0.4) {
         _currentFanFrequency = _currentFanFrequency - 5;
         if (_currentFanFrequency <= fanFreaquencyMin) {
             _currentFanFrequency = fanFreaquencyMin;
         }
-        _frequenceValue.text = [NSString stringWithFormat:@"%@",@(_currentFanFrequency)];
         [self sendFanCommand];
-//    }
 }
 - (IBAction)increaseClicked:(UIButton *)sender {
-    //ybyao 存储当前时间
-    NSString *lastTime = [UserDefault objectForKey:CurrentTime];
-    [Util storeCurrentTime];
-    //获取时间差，防止按钮被连续点击ybyao07
-//    if (lastTime == nil || [Util GetStringTimeDiff:lastTime timeE:[Util GetCurTime]] > 0.4) {
         _currentFanFrequency = _currentFanFrequency + 5;
         if (_currentFanFrequency >= fanFrequencyMax) {
             _currentFanFrequency = fanFrequencyMax;
         }
-        _frequenceValue.text = [NSString stringWithFormat:@"%@",@(_currentFanFrequency)];
         [self sendFanCommand];
-//    }
 }
 
 #pragma mark ---发送指令
@@ -232,6 +211,10 @@ static const NSInteger  fanFrequencyMax = 50;  //风机最高频率
     if (timer!=nil) {
         [timer invalidate];
     }
+    if (![(AppDelegate *)[UIApplication sharedApplication].delegate beforeSendBaseonWifiLock:_deviceModel]) {
+        return;
+    }
+    _frequenceValue.text = [NSString stringWithFormat:@"%@",@(_currentFanFrequency)];
     [self startTimer];
     //如果timer存在，先停止timer，再启动新的timer
     [tempTimer invalidate];
@@ -242,9 +225,9 @@ static const NSInteger  fanFrequencyMax = 50;  //风机最高频率
 //2秒之后发送
 -(void)sendCmdAfterTwoSeconds
 {
-    self.deviceModel.deviceData.fanFrequency = _currentFanFrequency;
-    NSLog(@"2秒后发送指令，the frequency %ld",_currentFanFrequency);
-    [SendCommandManager sendFanFrequency:self.deviceModel];
+    DeviceVo *temp = [_deviceModel copy];
+    temp.deviceData.fanFrequency = _currentFanFrequency;
+    [SendCommandManager sendFanFrequency:temp];
 }
 
 -(void)refreshView
@@ -279,7 +262,7 @@ static const NSInteger  fanFrequencyMax = 50;  //风机最高频率
             }
     }else{//设备已离线
         _unitHz.hidden = YES;
-        _rotateSpeed.text = @"设备已离线";
+        _rotateSpeed.text = @"已离线";
         _currentFanFrequency = _deviceModel.deviceData.fanFrequency;
         _frequenceValue.text = [NSString stringWithFormat:@"%ld",_deviceModel.deviceData.fanFrequency];//设置
         _CO2Value.text =[NSString stringWithFormat:@"%ldppm",_deviceModel.deviceData.CO2Density] ;
@@ -289,11 +272,12 @@ static const NSInteger  fanFrequencyMax = 50;  //风机最高频率
 //定时开启更新频率
 -(void)updateFrequency
 {
-    //定时更新，发送30s之后再更新（如果失败，提示失败）
+    //定时更新，发送5s之后再更新（如果失败，提示失败）
     if (_deviceFanFrequency !=[_frequenceValue.text integerValue]) {
         [[[UIAlertView alloc ]initWithTitle:@"" message:@"网络异常，调节失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
     }
     _frequenceValue.text = [NSString stringWithFormat:@"%ld",_deviceModel.deviceData.fanFrequency];//设置
+    _currentFanFrequency = _deviceModel.deviceData.fanFrequency;
     [timer invalidate];
     timer = nil;
 }
@@ -306,7 +290,7 @@ static const NSInteger  fanFrequencyMax = 50;  //风机最高频率
 
 -(void)dealloc
 {
-    [NotificationCenter removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

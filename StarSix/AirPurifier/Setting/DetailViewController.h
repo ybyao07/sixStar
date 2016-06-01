@@ -9,14 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AlertBox.h"
 #import <MessageUI/MessageUI.h>
-#import <MQTTKit.h>
-#import "YBBaseViewController.h"
-@interface DetailViewController : YBBaseViewController <UITableViewDataSource,UITableViewDelegate,AlertBoxDelegate,MFMailComposeViewControllerDelegate>
-{
-  
-}
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) MQTTClient *mqClient;
-//- (IBAction)onShare:(id)sender;
+#import "BaseViewController.h"
+@interface DetailViewController : BaseCellTableViewController
 
 @end

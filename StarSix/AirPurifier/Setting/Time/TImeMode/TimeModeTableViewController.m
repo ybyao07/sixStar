@@ -11,7 +11,7 @@
 #import "RadioTableViewCell.h"
 #import "CustomTimeViewController.h"
 #import "TimeValueTableViewCell.h"
-#import "AirPurifierAppDelegate.h"
+#import "AppDelegate.h"
 #import "AirPurifierViewController.h"
 #import "UtilConversion.h"
 #import "SendCommandManager.h"
@@ -75,8 +75,7 @@ const static unsigned int timeThreeOpen = 32;//定时器3开
 
 -(void)initNavView
 {
-    [self addBarItemTitle:@"定时"];
-    [self addBarBackButtonItemWithImageName:@"back_normal" selImageName:@"back_pressed" action:@selector(onBack)];
+    [self setNavTitle:@"定时"];
 }
 
 #pragma mark UITableViewDelegate
@@ -97,13 +96,13 @@ const static unsigned int timeThreeOpen = 32;//定时器3开
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 64)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 64)];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_white"]];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.frame = CGRectMake(0, 20, kScreenW, 44);
+    imageView.frame = CGRectMake(0, 20, kWindowWidth, 44);
     [bgView addSubview:imageView];
     
-    SwitchHeaderView *switchHeader = [[SwitchHeaderView alloc] initWithFrame:CGRectMake(0, 20, kScreenW, 44)];
+    SwitchHeaderView *switchHeader = [[SwitchHeaderView alloc] initWithFrame:CGRectMake(0, 20, kWindowWidth, 44)];
     switchHeader.backgroundColor = [UIColor whiteColor];
     switchHeader.block = ^(BaseModel *model,UISwitch *swithM){
         _currentTimeModel.status = swithM.isOn;
@@ -303,7 +302,7 @@ const static unsigned int timeThreeOpen = 32;//定时器3开
 }
 
 
--(void)onBack
+-(void)NavBackBtnClick
 {
     //开启情况下，如果没有选择模式或者定时，则提醒用户选择
     if (_currentTimeModel.status) {

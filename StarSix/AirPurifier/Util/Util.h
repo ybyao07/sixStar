@@ -10,14 +10,6 @@
 
 @interface Util : NSObject
 
-+(NSString *)getSetWeatherRequesByAreaid:(NSString *)areaId;
-+(NSString *)getSetPmRequesByLocation:(NSString *)location;
-
-+ (NSString*) getPublicKey:(NSString*)areaid type:(NSString*)type date:(NSString*)date appid :(NSString*)appid;
-+ (NSString *)hmacsha1:(NSString *)public_Key key:(NSString *)private_key;
-+(NSString *)stringByEncodingURLFormat:(NSString*)_key;
-+ (NSString*) getAPI:(NSString*)areaid type:(NSString*)type date:(NSString*)date appid:(NSString*)appid key:(NSString*)key ;
-
 //提取字符串中的数字
 +(NSString *)getNumber:(NSString *)str;
 

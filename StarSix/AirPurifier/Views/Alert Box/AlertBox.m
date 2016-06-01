@@ -4,7 +4,7 @@
 //
 
 #import "AlertBox.h"
-#import "AirPurifierAppDelegate.h"
+#import "AppDelegate.h"
 #import "AlertBoxViewController.h"
 #import "RetryBoxViewController.h"
 #import "SucceedBoxViewController.h"
