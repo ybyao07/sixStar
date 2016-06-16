@@ -1,24 +1,5 @@
 # sixStar
 六星新风机
 
-![Alt text](http://g.gravizo.com/source/thiisthemark?http%3A%2F%2Fwww.gravizo.com)
-![Alt text](http://www.gravizo.com/img/1x1.png#
+st=>start: Start:>http://www.google.com[blank] e=>end:>http://www.google.com op1=>operation: My Operation sub1=>subroutine: My Subroutine cond=>condition: Yes or No?:>http://www.google.com io=>inputoutput: catch something... st->op1->cond cond(yes)->io->e cond(no)->sub1(right)->op1
 
-thiisthemark        
-@startuml
-object Object01
-object Object02
-object Object03
-object Object04
-object Object05
-object Object06
-object Object07
-object Object08
-
-Object01 <|-- Object02
-Object03 *-- Object04
-Object05 o-- "4" Object06
-Object07 .. Object08 : some labels
-@enduml
-thiisthemark        
-)
